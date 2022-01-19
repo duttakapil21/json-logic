@@ -32,7 +32,7 @@ const data = getAddress(config);
 
 const JSONdata = JSON.stringify(data);
 
-fs.writeFile('./addresses.json', JSONdata, (err) => { 
+fs.writeFile('./data/addresses.json', JSONdata, (err) => { 
     if(err) {
         console.error(err)
     } else {

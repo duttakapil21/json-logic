@@ -35,11 +35,10 @@ const data = getAllKeys(config);
 
 const JSONdata = JSON.stringify(data);
 
-fs.writeFile('./allkeys.json', JSONdata, (err) => { 
+fs.writeFile('./data/allkeys.json', JSONdata, (err) => { 
     if(err) {
         console.error(err)
     } else {
-        console.log(data["assetsControl-status"])
         console.log("All Keys Created!")
     }
 });
