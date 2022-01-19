@@ -8,3 +8,9 @@ The code is not completed, it's WIP or POC.
 
 Note : 
 - For key-values that are long, e.g. a very long string, array, we will need to create additional logic to do pagination, and get only some of the values at a time, instead of the entire value and increasing the payload significatly. 
+
+ToDo : 
+- [] Show array values inside the updated key
+- [] Don't loop inside objects that are values themselves
+- [] Add value type to the address 
+- [] Recreate config object from updateKey for multiple keys or all keys
