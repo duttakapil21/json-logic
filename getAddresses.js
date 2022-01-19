@@ -3,6 +3,15 @@ const config = require("./config.json");
 
 const configKeys = ["origin","assetsControl","firewallConfiguration","emailNotification","seoOptimization"];
 
+const hasChildObjects = (ob) => {
+    let bool = false;
+    for (key in ob) {
+        const type = ob[key].constructor;
+        type === Object || type === Array ? bool = true : bool; 
+    }
+    return bool;
+}
+
 const getAddress = (obj) => {
     const keys = Object.keys(obj).filter((item) => configKeys.indexOf(item) !== -1);//.map(item => obj[item]);
     
@@ -11,11 +20,12 @@ const getAddress = (obj) => {
         const keys = Object.keys(obj);
         keys.map((key) => {
             const address = `${id}-${key}`;
-            if(obj[key].constructor === Object) {
+            if(obj[key].constructor === Object && hasChildObjects(obj[key])) {
                 return recurse(obj[key], address);
             } else {
+                const type = String(typeof obj[key]).toLowerCase();
                 if(key === 'status') key = id.split('-').pop() + `-${key}`;
-                addresses[key] = address;
+                addresses[key] = `${address}-${type}`;
             }
         });
         return addresses;

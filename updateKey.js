@@ -24,15 +24,13 @@ const updateKey = (updatedKey) => {
     
     const recurse = (ob) => {
         const currentKey = arr[loopNo];
-        // console.log(currentKey, key);
+
         if(currentKey === key) {
-            // ob[key] = value
-            // console.log(ob);
+            console.log(currentKey, key);
             return ob[key] = value;
         } else {
             loopNo += 1;
             ob[currentKey] = {};
-            // console.log(ob);
             return recurse(ob[currentKey]);;
         }   
     }
@@ -50,4 +48,4 @@ const updateKey = (updatedKey) => {
     });
 }
 
-updateKey({'customClientConfiguration-status' : "enabled"});
+updateKey({'whitelistedCountryCodes' : ["HK", "IN", "US", "LK", "GB", "AU"]});

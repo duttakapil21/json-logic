@@ -10,7 +10,9 @@ Note :
 - For key-values that are long, e.g. a very long string, array, we will need to create additional logic to do pagination, and get only some of the values at a time, instead of the entire value and increasing the payload significatly. 
 
 ToDo : 
-- [ ] Show array values inside the updated key
-- [ ] Don't loop inside objects that are values themselves
-- [ ] Add value type to the address 
+- [x] Fix logic for updating nested status keys
+- [x] Show array values inside the updated key
+- [x] Don't loop inside objects that are values themselves
+- [x] Add value type to the address 
+- [ ] Figure out solution for Object of Objects where the objects are the values themselves!
 - [ ] Recreate config object from updateKey for multiple keys or all keys
