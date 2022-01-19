@@ -16,6 +16,7 @@ const getAllKeys = (obj) => {
                 if(key === 'status') {
                     allKeys[`${id}-${key}`] = obj[key];
                 } else {
+                    // if(key === 'status') key = id.split('-').pop() + `-${key}`;
                     allKeys[key] = obj[key];
                 }
             }

@@ -16,3 +16,5 @@ ToDo :
 - [x] Add value type to the address 
 - [ ] Figure out solution for Object of Objects where the objects are the values themselves!
 - [ ] Recreate config object from updateKey for multiple keys or all keys
+- [ ] Add logic for making `config` objects ID's unique
+- [ ] Update `getAllKeys` logic to work with status and config ID's

@@ -49,3 +49,5 @@ const updateKey = (updatedKey) => {
 }
 
 updateKey({'whitelistedCountryCodes' : ["HK", "IN", "US", "LK", "GB", "AU"]});
+
+module.export(updateKey);

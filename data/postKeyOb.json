@@ -1,1 +1,0 @@
-{"firewallConfiguration":{"wafConfiguration":{"geolocationconfiguration":{"config":{"whitelistedCountryCodes":["HK","IN","US","LK","GB","AU"]}}}}}
