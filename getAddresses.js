@@ -1,7 +1,13 @@
 const fs = require('fs');
 const config = require("./config.json");
 
-const configKeys = ["origin","assetsControl","firewallConfiguration","emailNotification","seoOptimization"];
+// const configKeys = ["origin","assetsControl","firewallConfiguration","emailNotification","seoOptimization"];
+
+const exceptions = ["proxyDomainAdvancedConfig"];
+
+const isNotException = (key) => {
+    return exceptions.indexOf(key) === -1;    
+}
 
 const hasChildObjects = (ob) => {
     let bool = false;
@@ -13,18 +19,18 @@ const hasChildObjects = (ob) => {
 }
 
 const getAddress = (obj) => {
-    const keys = Object.keys(obj).filter((item) => configKeys.indexOf(item) !== -1);//.map(item => obj[item]);
+    const keys = Object.keys(obj);//.filter((item) => configKeys.indexOf(item) !== -1);//.map(item => obj[item]);
     
     const addresses = {};
     const recurse = (obj, id) => {
         const keys = Object.keys(obj);
         keys.map((key) => {
             const address = `${id}-${key}`;
-            if(obj[key].constructor === Object && hasChildObjects(obj[key])) {
+            if(obj[key].constructor === Object && hasChildObjects(obj[key]) && isNotException(key)) {
                 return recurse(obj[key], address);
             } else {
                 const type = String(typeof obj[key]).toLowerCase();
-                if(key === 'status') key = id.split('-').pop() + `-${key}`;
+                if(key === 'status' || key === 'config') key = id.split('-').pop() + `-${key}`;
                 addresses[key] = `${address}-${type}`;
             }
         });
@@ -32,7 +38,10 @@ const getAddress = (obj) => {
     }
 
     keys.map((key) => {
-        recurse(obj[key], key);
+        const type = String(typeof obj[key]).toLowerCase();
+        obj[key].constructor === String ? 
+            addresses[key] = `${key}-${type}` :
+            recurse(obj[key], key);
     });
 
     return addresses;

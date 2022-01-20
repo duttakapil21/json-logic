@@ -15,6 +15,8 @@ ToDo :
 - [x] Don't loop inside objects that are values themselves
 - [x] Add value type to the address 
 - [x] Recreate config object from updateKey for multiple keys or all keys
-- [ ] Figure out solution for Object of Objects where the objects are the values themselves!
-- [ ] Add logic for making `config` objects ID's unique
-- [ ] Update `getAllKeys` logic to work with status and config ID's
+- [x] Figure out solution for Object of Objects where the objects are the values themselves (create an exception)!
+- [x] Add logic for making `config` objects ID's unique
+- [x] Create IDs/keys for parent level key-value pairs
+- [ ] Improve logic for condition to check for hasChildObjects 
+- [ ] Abstract overlapping code between `./getAddresses.js` and `./getAllKeys.js`

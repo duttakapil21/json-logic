@@ -1,4 +1,31 @@
 {
+    "projectId": "",
+    "creationDate": "",
+    "updationDate": "",
+    "projectName": "",
+    "projectDescription": "",
+    "createdBy": "",
+    "updatedBy": "",
+    "auditApplication": {
+      "status": "enabled",
+      "config": {
+        "debugMode": false,
+        "traceMode": false
+      }
+    },
+    "cloudUsed": {
+      "cloudType": "AWS",
+      "cloudConfig": {
+        "accessKey": "",
+        "secretKey": "",
+        "region": "",
+        "bucket": ""
+      },
+      "cloudResources": {
+        "CDNId": "E242YVICAUYB7Y",
+        "secondaryCacheBucket": "s3://kitproxy-assets-production/<PROJECT-ID>/"
+      }
+    },
     "origin": {
       "originProtocol": "https",
       "originKeepAliveTimeoutSec": 600,
@@ -19,6 +46,11 @@
           "www-everestjs-net": "www.everestjs.net"
         },
         "proxyDomainAdvancedConfig": {
+          "cms.careinsurance.com": {
+            "IncludedPaths": [
+              "/upload_master/"
+            ]
+          },
           "chatbot.mantra.ai": {
             "IncludedPaths": [
               "/chatbox/mantra/index.php/chat/getstatus/"
@@ -71,30 +103,28 @@
         "minifyInlineJs": true,
         "imageOptimization": {
           "status": "enabled",
+          "config": {
+            "excludeImageOptimizationPathRegex": "^$",
+            "includeImageOptimizationPathRegex": "https://cms.careinsurance.com/upload_master/*"
+          },
           "allowedRelativeMaxTotalSize": 1000000
         }
       },
       "compressionConfig": {
-        "status": "enabled"
+        "status": "enabled",
+        "config": {
+          "excludeCompressionPathRegex": "^$",
+          "brotliCompression": "enabled",
+          "gzipCompression": "enabled"
+        }
       },
       "customClientConfiguration": {
         "status": "disable"
       }
     },
     "firewallConfiguration": {
+      "wafStatus": "enabled",
       "wafConfiguration": {
-        "honeyPotLinks": {
-          "config": {
-            "honeyPotMode": "block",
-            "honeyPotThreshold": 50,
-            "honeyPotAllowedRegex": "^/blog/*",
-            "honeyPotAllowedRegexOptions": "i",
-            "honeyPotBlockedRegex": "^/.*",
-            "honeyPotBlockedRegexOptions": "i",
-            "dbTableName": "<PROJECT_ID>_honeypot_audit"
-          },
-          "status": "enabled"
-        },
         "illegalFileTypeRegex": ".(bat|dll|bak|cgi|com|ini)$",
         "illegalFileTypeRegexOptions": "i",
         "illegalFilePathRegex": "^(/config/).*|^(/etc/).*",
@@ -124,9 +154,20 @@
               "IT"
             ]
           }
+        },
+        "honeyPotLinks": {
+          "status": "enabled",
+          "config": {
+            "honeyPotMode": "block",
+            "honeyPotThreshold": 50,
+            "honeyPotAllowedRegex": "^/blog/*",
+            "honeyPotAllowedRegexOptions": "i",
+            "honeyPotBlockedRegex": "^/.*",
+            "honeyPotBlockedRegexOptions": "i",
+            "dbTableName": "<PROJECT_ID>_honeypot_audit"
+          }
         }
-      },
-      "wafStatus": "enabled"
+      }
     },
     "emailNotification": {
       "status": "enabled",
@@ -153,5 +194,8 @@
         "reportBucket": "s3://kitproxy-reports/611bfdfcfecf584cf830dd16/seo-report",
         "reportBucketRegion": "ap-south-1"
       }
+    },
+    "applicationRollback": {
+      "status": "disabled"
     }
   }

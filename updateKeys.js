@@ -17,8 +17,10 @@ const updateKeys = (keys) => {
         let loopNo = 0;
         
         if(key.split('-').pop() === "status") key = "status";
+        if(key.split('-').pop() === "config") key = "config";
     
         const recurse = (ob) => {
+            // console.log(key);
             const currentKey = arr[loopNo];
             // console.log(configOb);
             if(currentKey === key) {
