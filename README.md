@@ -2,10 +2,10 @@ This project has some examples of how we can take the config file and get all th
 
 The code is not completed, it's WIP or POC. 
 
-- `./getAddresses.js` dynamically generates all the addresses from the `config.json` file. The addresses are written to `./addresses.json` file as a JSON string.
-- `./getAllKeys.js` gets all the individual unique keys in the `config.json` file and places them at the root level of the object. This makes it easier for getting individual key and value and rendering on the frontend components, without dealing with the object structure on the frontend.
-- `./updateKey.js` takes one single key as input, and utilizes the `./addresses.json` file to get the address of that key, and then breaks the address down to generate the object structure that can be posted from the backend to update the database. 
-- `./updateKeys.js` takes an object with multiple key-value pairs, and reconstructures the entire object with all the values in the right place. This will allow us to post multiple changes made by the user in one go, and update the backend database for all of them together. This function can right now recreate the entire original `config.json` file exactly.
+- `./getAddresses.js` dynamically generates all the addresses from the `config.json` file. The addresses are written to `./data/addresses.json` file as a JSON string.
+- `./getAllKeys.js` gets all the individual unique keys in the `config.json` file and places them at the root level of the object. It then posts those keys to `./data/allkeys.json` This makes it easier for getting individual key and value and rendering on the frontend components, without dealing with the object structure on the frontend.
+- `./updateKey.js` takes one single key as input, and utilizes the `./data/addresses.json` file to get the address of that key, and then breaks the address down to generate the object structure that can be posted from the backend to update the database. It posts this new ob to `./data/postKeyOb.json`
+- `./updateKeys.js` expands on the updateKey.js function, takes an object with multiple key-value pairs, and reconstructures the entire object with all the values in the right place. It then posts the new ob to `./data/postConfigOb.json`. This will allow us to post multiple changes made by the user in one go, and update the backend database for all of them together. This function can right now recreate the entire original `config.json` file exactly.
 
 
 Note : 
